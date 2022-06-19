@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website creator</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<link rel="stylesheet" href="main.css">
+<script>src="index.js"</script>
+
+</head>
+
+<body>
+
+  <div class="main">
+
+
+    
+    <div id = "can">
+    </div>
+    <div id = "can2">
+    </div>
+    <div id = "can3">
+    </div>
+    <div id = "canImg">
+    </div>
+    <div id = "canText">
+    </div>
+    <div class="back-panel">
+  <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="sidebar-sticky">
+      <ul class="nav flex-column">
+        <div class="dropdown">
+          <button onclick="myFunction()" class="dropbtn">Вибір фону</button>
+            <div id="myDropdown" class="dropdown-content">
+              <div>
+                <input type="color" onchange="background(value)" id="head" name="head"
+                       value="#e66465">
+                <label for="head">Head</label>
+            </div>
+            </div>
+          </div>
+        <li class="" id="header_change_li">
+          <button onclick="myFunction2()" class="dropbtn2">Вставка заголовку</button>
+        </li>
+        <li class="">
+          <input class="dropbtn" type="file" accept="image/*" onchange="loadFile(event)">
+        </li>
+        <li class="">
+          <button class="dropbtn3" onclick="AddMainText()">Вставка тексту</button>
+        </li>
+        <li class="">
+          <button onclick="swa()" type="button"  class="dropbtn3">Вставка фігури</button>
+          <div id="overlay">
+            <div class="popup">
+              <button class="close" title="Закрыть окно" onclick="swa2()"></button>
+              <p class="zag">Вставка фігури</p>
+              <p><button onclick="addCanvas()" class="dropbtn4">Додати прямокутник</button><button onclick="removeCanvas()" class="dropbtn4">Видалити прямокутник</button></p>
+              <p><button onclick="addCanvas2()" class="dropbtn4">Додати квадрат</button><button onclick="removeCanvas2()" class="dropbtn4">Видалити квадрат</button></p>
+              <p><button onclick="addTriangle()" class="dropbtn4">Додати трикутник</button><button onclick="removeTriangle()" class="dropbtn4">Видалити трикутник</button></p>
+            </div>
+          </div>
+        </li>
+        
+      </ul>
+
+    </div>
+  </nav>
+</div>
+  <div class="MainContent">
+  <div id ="background_image" class = "background_image"></div>
+
+<div class="Drop">
+  <div class="dropdown">
+  
+  </div>
+
+
+  <div class="drawing-board">
+    <canvas id="drawing-board"></canvas>
+  </div>
+
+
+  <div class="dropdown2">
+    <div class="header_label"></div>
+
+<div id="myDropdown2"></div>
+<div class = "customImage">
+   
+<img  id="output" style = "position: absolute;"/>
+</div>
+<div id="myDropdown3"></div>
+</div>
+
+
+<script>
+  var loadFile = function(event) {
+    var output = document.getElementById('output');
+    document.getElementById("canImg").appendChild(output);
+    output.src = URL.createObjectURL(event.target.files[0]);
+    output.onload = function() {
+      URL.revokeObjectURL(output.src) 
+    }
+  };
+</script>
+</div>
+</div>
+
+</div>
+
+<script>
+//DrawingStart
+
+//DrawingEnd
+</script>
+
+
+  <script>const model = [
+    {type: 'image1', value: './image/1.jpg'},
+    {type: 'image2', value: './image/2.jpg'},
+    {type: 'image3', value: './image/3.png'}
+]
+let isbold = false;
+let isitalic = false;
+let isheader = false;
+
+function changeBackground(color) {
+document.body.style.background = color;
+}
+
+var b = document.getElementById('overlay');
+function swa(){
+	b.style.visibility = 'visible';
+	b.style.opacity = '1';
+	b.style.transition = 'all 0.7s ease-out 0s';
+}
+function swa2(){
+	b.style.visibility = 'hidden';
+	b.style.opacity = '0';
+}
+//------------------------------------------------------------------------
+function addCanvas() {
+  var c = document.createElement("canvas");
+  c.setAttribute("class", "canvas")
+  document.getElementById("can").appendChild(c);
+}
+
+function removeCanvas() {
+  var c = document.querySelectorAll("canvas");
+  if (c.length) {
+    c[c.length - 1].parentNode.removeChild(c[c.length - 1]);
+  }
+}
+
+function addCanvas2(){
+var g = document.createElement("canvas")
+g.setAttribute("class", "FFF")
+document.getElementById("can2").appendChild(g);
+}
+
+function removeCanvas2(){
+  var g = document.querySelectorAll("canvas");
+  if (g.length) {
+    g[g.length - 1].parentNode.removeChild(g[g.length - 1]);
+  }  
+}
+
+function addTriangle(){
+var h = document.createElement("triangle");
+h.setAttribute("class", "triangle")
+document.getElementById("can3").appendChild(h);
+}
+
+function removeTriangle(){
+  var h = document.querySelectorAll("triangle");
+  if (h.length) {
+    h[h.length - 1].parentNode.removeChild(h[h.length - 1]);
+  }  
+}
+//---------------------------------------------------------------------------
+//000000000000000000000000000000000000000000000000000000000000000000000000000
+dragElement(document.getElementById("can"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+//0000000000000000000000000000000000000000000000000000000000
+//addCanvas
+dragElement2(document.getElementById("can2"));
+
+function dragElement2(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown2;
+  } else {
+    elmnt.onmousedown = dragMouseDown2;
+  }
+
+  function dragElement2(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    elmnt.onmousedown = dragMouseDown;
+  }
+}
+  
+  function dragMouseDown2(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement2;
+    document.onmousemove = elementDrag2;
+  }
+
+  function elementDrag2(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement2() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+//addCanvas2
+
+//addCanvas3
+dragElement3(document.getElementById("can3"));
+
+function dragElement3(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown3;
+  } else {
+    elmnt.onmousedown = dragMouseDown3;
+  }
+
+  function dragMouseDown3(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement3;
+    document.onmousemove = elementDrag3;
+  }
+
+  function elementDrag3(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement3() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+
+//addCanvas3
+
+//IMGMoveStart
+dragElementImg(document.getElementById("canImg"));
+
+function dragElementImg(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDownImg;
+  } else {
+    elmnt.onmousedown = dragMouseDownImg;
+  }
+
+  function dragElementImg(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDownImg;
+  } else {
+    elmnt.onmousedown = dragMouseDownImg;
+  }
+}
+  
+  function dragMouseDownImg(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElementImg;
+    document.onmousemove = elementDragImg;
+  }
+
+  function elementDragImg(e) {
+    e = e || window.event;
+    e.preventDefault();
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElementImg() {
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
+//IMGMoveEnd
+
+//resizerstart
+
+
+//resizerend
+
+function AddMainText(){
+isheader == true
+    var d = document.createElement("Div");
+    d.setAttribute("name", "MainText");
+    d.style.width = "960px";
+    var a = document.createElement("textarea");
+    a.setAttribute("name", "MainTextEdit")
+    a.style.outline="2px dashed black";
+    a.style.borderStyle = "none";
+    a.style.background = "none";
+    a.style.fontSize = "20px";
+    a.style.width = "100%";
+    d.style.marginTop = "10px";
+    a.draggable = true;
+    a.onfocus = function(){
+    a.style.outline = "2px dashed black";
+    }
+    a.onblur = function(){
+      a.style.outline = "none";
+    }
+    d.appendChild(a);
+    document.getElementById("myDropdown3").appendChild(d);
+}
+
+function myFunction() {
+    document.getElementById("myDropdown").classList.toggle("show");
+
+}
+
+function mvImg(e) {
+  var valueX = (e.pageX * -1 / 12);
+  var valueY = (e.pageY * -1 / 12);
+  this.style.pageX = valueX + "px"
+  this.style.backgroundPositionY = valueY + "px"
+}
+window.onload = function() {
+  var im = document.getElementById("mv-img");
+  if (im) {
+    im.addEventListener("mousemove",mvImg,false);
+  }
+}
+
+
+function myFunction2() {
+    document.getElementById("myDropdown2").classList.toggle("show");
+    if(isheader == false){
+    var d = document.createElement("Div");
+    d.setAttribute("id", "header_label2");
+  
+    var a = document.createElement("input");
+    a.setAttribute("id", "header")
+    a.type = "text";
+    a.innerHTML="AAA";
+    a.style.fontSize = "20px";
+    a.value = ""
+    a.onchange = function(){
+      var header_label = document.getElementById("header_label2");
+      header_label.innerHTML = a.value;
+    }
+    var buttonBold = document.createElement("button");
+    buttonBold.innerHTML = "bold"
+    buttonBold.onclick = function (){
+      let f = document.getElementById("header_label2");
+      if(isbold == false){
+        f.style.fontWeight = "bold";
+        isbold = true;
+      }
+      else{
+        f.style.fontWeight = "normal";
+        isbold = false;
+      }
+    }
+    var buttonItalic = document.createElement("button");
+    buttonItalic.innerHTML = "italic"
+    buttonItalic.onclick = function (){
+      let f = document.getElementById("header_label2");
+      if(isitalic == false){
+        f.style.fontStyle = "italic";
+        isitalic = true;
+      }
+      else
+      {
+        f.style.fontStyle = "normal";
+        isitalic = false;
+      }
+    }
+    document.getElementById("myDropdown2").appendChild(d);
+    document.getElementById("header_change_li").appendChild(a);
+    document.getElementById("header_change_li").appendChild(buttonBold);
+    document.getElementById("header_change_li").appendChild(buttonItalic);
+    isheader = true;
+  }
+  else{}
+}
+
+function textDecorChanged(input, type){
+let f = document.getElementById(input);
+f.style.fontStyle = type;
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+function background(back)
+{
+var background = document.getElementById("background_image")
+background.style.backgroundColor = back;
+background.style.width = "1920px"
+background.style.height = "1080px"
+
+}
+
+function click() {
+  var background =
+  document.getElementById("myDropdown")
+}
+</script>
+
+  </body>
+</html>

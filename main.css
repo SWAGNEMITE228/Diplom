@@ -1,0 +1,286 @@
+.main{
+    display: flex;
+    flex-direction: row;
+}
+.MainContent{
+    width: 100%;
+}
+.back-panel{
+    width: 15%;
+}
+.dropbtn2, .dropbtn3, .dropbtn {
+    background-color: #2000b1;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #52b929;
+}
+
+.dropbtn2:hover, .dropbtn2:focus {
+    background-color: #52b929;
+}
+
+.dropbtn3:hover, .dropbtn3:focus {
+    background-color: #52b929;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown2 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#myDropdown3 {
+     display: flex;
+     justify-content: flex-start;
+     align-items: flex-start;
+     flex-direction: column;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content2 {
+    display: none;
+    position: absolute;
+    background-color: #ffffff;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+.background_image
+{
+position: absolute;
+object-fit: fill;
+background-repeat: no-repeat;
+background-size: cover;
+width: 1920px;
+height: 1080px;
+}
+
+.background
+{
+background-color: #95e792;
+}
+
+.drop{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#myDropdown2
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#elem {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+    top: 300px;
+    left: 300px;
+}
+#elem.active{
+    border: 1px solid red;
+}
+
+#header_label2{
+font-size: 36px;
+color: white;
+}
+
+#header_change_li{
+    display: flex;
+    flex-direction: column;
+    width: 150px;
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    overflow: auto;
+    visibility:hidden;
+    opacity: 0;
+    transition: opacity 0.7s ease-in 0s;
+}
+.popup {
+    top: 10%;
+    left: 0;
+    right: 0;       
+    font-size: 14px;
+    margin: auto;
+    width: 80%;
+    min-width: 200px;
+    max-width: 600px;
+    position: absolute;
+    padding: 15px 20px;
+    border: 1px solid #666;
+    background-color: #fefefe;
+    z-index: 1000;
+    border-radius: 10px;
+    font: 14px/18px 'Tahoma', Arial, sans-serif;
+    box-shadow: 0 0px 14px rgba(0, 0, 0, 0.4);
+}
+.close {
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    border: none;
+    border-radius: 50%;
+    background-color: rgba(0, 130, 230, 0.9);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    outline: none;
+}
+.close:before {
+    color: rgba(255, 255, 255, 0.9);
+    content: "X";
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    text-decoration: none;
+    text-shadow: 0 -1px rgba(0, 0, 0, 0.9);
+}
+.close:hover {
+    background-color: rgba(180, 20, 14, 0.8);
+}
+#overlay .popup p.zag{margin:20px 0 10px;padding:0 0 6px;color:tomato;font-size:16px;font-weight:bold;border-bottom:1px solid tomato;}
+
+.canvas {
+    width:200px;
+    height:100px;
+    border:1px solid black;
+    margin:2px;
+    text-align: center;
+    resize: both;
+    background-color: #7a3471;
+}
+
+.FFF {
+    width:200px;
+    height:200px;
+    border:1px solid rgb(0, 0, 0);
+    margin:2px;
+    background-color: rgb(120, 158, 50);
+}
+
+#can {
+    position: absolute;
+    z-index: 9;
+    text-align: center;
+}
+
+#can2 {
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+}
+
+#can3 {
+    position: absolute;
+    z-index: 11;
+    text-align: center;
+}
+
+#canImg {
+    position: absolute;
+    z-index: 12;
+    text-align: center;
+}
+
+#canText {
+    position: absolute;
+    z-index: 13;
+    text-align: center;
+}
+
+.triangle {
+    width: 0;
+    height: 0;
+    border: 100px solid transparent;
+    border-top: 0;
+    border-bottom: 130px solid rgb(42, 147, 179);
+    resize: both;
+}
+
+textarea {
+    resize: both;
+}
+
+.dropbtn4 {
+    background-color: #8c78e2;
+    color: white;
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-variant: inherit;
+}
+
+.resizer {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    background-color: black;
+    z-index: 2;
+}
+
+/*
+<li>
+<button class="button-save-document" onclick="Save()">Save Document</button>
+</li>
+
+<script>
+  const buttonSaveDocument = document.querySelector("button-save-document")
+
+function Save() {
+  window.print()
+}
+
+buttonPrintOrSaveDocument.addEventListener("click", printOrSave)
+</script>
+*/
